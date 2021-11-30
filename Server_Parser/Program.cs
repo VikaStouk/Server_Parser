@@ -41,15 +41,20 @@ namespace Server_Parser
                 Command CommandObject = new Command();
 
                 var TupleResult = CommandObject.Parser(ClientCommand);
-                Console.WriteLine("Получили данные: " + ClientCommand);
-                Console.WriteLine($"Номер команды: {TupleResult.CommandNumber}");
-                Console.Write("Набор параметров: ");
-
+  
+                
+                    Console.WriteLine("Получили данные: " + ClientCommand);
+                    Console.WriteLine($"Номер команды: {TupleResult.CommandNumber}");
+                    Console.Write("Набор параметров: ");
+                
                 try
                 {
-                    foreach (var i in TupleResult.parameters)
+                    if (TupleResult.parameters != null)
                     {
-                        Console.Write("{0} " + " ", i);
+                        foreach (var i in TupleResult.parameters)
+                        {
+                            Console.Write("{0} " + " ", i);
+                        }
                     }
                 }
                 catch (NullReferenceException)
@@ -57,8 +62,9 @@ namespace Server_Parser
                     Console.WriteLine("параметры отсутствуют");
                 }
 
-
-                Console.Write("Код цвета: ");
+                
+                    Console.Write("Код цвета: ");
+                
                 try
                 {
                     foreach (var i in TupleResult.color)

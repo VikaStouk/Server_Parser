@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Server_Parser
 {
-    class Command
+    public class Command
     {
         private int[] set_parameters;
         private int[] color = new int[3];
@@ -20,7 +20,14 @@ namespace Server_Parser
         {
             char[] CommandArray = new char[command.Length];
             CommandArray = command.ToCharArray();
-            CommandNumber = Convert.ToInt32(CommandArray[1].ToString());
+            try
+            {
+                CommandNumber = Convert.ToInt32(CommandArray[1].ToString());
+            }catch
+            {
+                Console.WriteLine("Принята неправильная комманда!");
+            }
+            
             var tuple_parse0 = (0, set_parameters, color);
             if (CommandArray[0] == '#' && CommandArray[2] == '#' && CommandArray[CommandArray.Length - 1] == '$' && CommandNumber < 8 && command.Length <= 25)
             {
